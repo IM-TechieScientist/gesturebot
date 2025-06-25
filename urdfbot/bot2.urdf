@@ -1,0 +1,238 @@
+<?xml version="1.0"?>
+<robot name="bot_2">
+    <material name="grey">
+        <color rgba='0.7 0.7 0.7 1'/>
+    </material>
+    <material name="green">
+        <color rgba='0 0.6 0 1'/>
+    </material>
+    <material name="white">
+        <color rgba='1 1 1 1'/>
+    </material>
+    <link name="base_footprint"/>
+    <link name="base_link">
+        <visual>
+            <geometry>
+                <box size="0.6 0.4 0.2"/>
+            </geometry>
+            <origin xyz="0 0 0.1" rpy="0 0 0"/>
+            <material name='green'></material>
+        </visual>
+    </link>
+
+    <link name='wheelsupportleft'>
+        <visual>
+            <geometry>
+                <cylinder radius="0.025" length="0.625"/>
+            </geometry>
+            <origin xyz="0 0 0" rpy="0 1.57 0"/>
+            <material name="white"></material> 
+        </visual>
+    </link>
+
+    <link name='wheelsupportright'>
+        <visual>
+            <geometry>
+                <cylinder radius="0.02" length="0.625"/>
+            </geometry>
+            <origin xyz="0 0 0" rpy="0 1.57 0"/>
+            <material name="white"></material> 
+        </visual>
+    </link>
+    
+    <link name='wheelhand1'>
+        <visual>
+            <geometry>
+                <cylinder radius="0.02" length="0.2"/>
+            </geometry>
+            <origin xyz="0 0 0" rpy="0 -0.78 0"/>
+            <material name="white"></material> 
+        </visual>
+    </link>
+
+    <link name='wheelhand2'>
+        <visual>
+            <geometry>
+                <cylinder radius="0.02" length="0.2"/>
+            </geometry>
+            <origin xyz="0 0 0" rpy="0 -2.35 0"/>
+            <material name="white"></material> 
+        </visual>
+    </link>
+    <link name='wheelhand3'>
+        <visual>
+            <geometry>
+                <cylinder radius="0.02" length="0.2"/>
+            </geometry>
+            <origin xyz="0 0 0" rpy="0 -2.35 0"/>
+            <material name="white"></material> 
+        </visual>
+    </link>
+    <link name='wheelhand4'>
+        <visual>
+            <geometry>
+                <cylinder radius="0.02" length="0.2"/>
+            </geometry>
+            <origin xyz="0 0 0" rpy="0 -0.78 0"/>
+            <material name="white"></material> 
+        </visual>
+    </link>
+    <link name='wheelhand5'>
+        <visual>
+            <geometry>
+                <cylinder radius="0.02" length="0.2"/>
+            </geometry>
+            <origin xyz="0 0 0" rpy="0 -2.35 0"/>
+            <material name="white"></material> 
+        </visual>
+    </link>
+    <link name='wheelhand6'>
+        <visual>
+            <geometry>
+                <cylinder radius="0.02" length="0.2"/>
+            </geometry>
+            <origin xyz="0 0 0" rpy="0 -2.35 0"/>
+            <material name="white"></material> 
+        </visual>
+    </link>
+    <link name='wheel1'>
+        <visual>
+            <geometry>
+                <cylinder radius="0.1" length="0.05"/>
+            </geometry>
+            <origin xyz="0 0 0" rpy="1.57 0 0"/>
+            <material name="white"></material> 
+        </visual>
+    </link>
+    <link name='wheel2'>
+        <visual>
+            <geometry>
+                <cylinder radius="0.1" length="0.05"/>
+            </geometry>
+            <origin xyz="0 0 0" rpy="1.57 0 0"/>
+            <material name="white"></material> 
+        </visual>
+    </link>
+    <link name='wheel3'>
+        <visual>
+            <geometry>
+                <cylinder radius="0.1" length="0.05"/>
+            </geometry>
+            <origin xyz="0 0 0" rpy="1.57 0 0"/>
+            <material name="white"></material> 
+        </visual>
+    </link>
+    <link name='wheel4'>
+        <visual>
+            <geometry>
+                <cylinder radius="0.1" length="0.05"/>
+            </geometry>
+            <origin xyz="0 0 0" rpy="1.57 0 0"/>
+            <material name="white"></material> 
+        </visual>
+    </link>
+    <link name='wheel5'>
+        <visual>
+            <geometry>
+                <cylinder radius="0.1" length="0.05"/>
+            </geometry>
+            <origin xyz="0 0 0" rpy="1.57 0 0"/>
+            <material name="white"></material> 
+        </visual>
+    </link>
+    <link name='wheel6'>
+        <visual>
+            <geometry>
+                <cylinder radius="0.1" length="0.05"/>
+            </geometry>
+            <origin xyz="0 0 0" rpy="1.57 0 0"/>
+            <material name="white"></material> 
+        </visual>
+    </link>
+    <joint name="base_wheelsupportleft_joint" type="fixed"> 
+        <parent link='base_link'/>
+        <child link="wheelsupportleft"/>
+        <origin xyz="0 -0.2 0" rpy="0 0 0"/>
+    </joint>
+
+    <joint name="base_wheelsupportright_joint" type="fixed">
+        <parent link='base_link'/>
+        <child link="wheelsupportright"/>
+        <origin xyz="0 0.2 0" rpy="0 0 0"/>
+    </joint>
+
+    <joint name="base_wheelhand1_joint" type="fixed"> 
+        <parent link='wheelsupportright'/>
+        <child link="wheelhand1"/>
+        <origin xyz="0.375 0 -0.075" rpy="0 0 0"/>
+    </joint>
+    <joint name="base_wheelhand2_joint" type="fixed"> 
+        <parent link='wheelsupportright'/>
+        <child link="wheelhand2"/>
+        <origin xyz="0.2 0 -0.075" rpy="0 0 0"/>
+    </joint>
+    <joint name="base_wheelhand3_joint" type="fixed"> 
+        <parent link='wheelsupportleft'/>
+        <child link="wheelhand3"/>
+        <origin xyz="0.2 0 -0.075" rpy="0 0 0"/>
+    </joint>
+    <joint name="base_wheelhand4_joint" type="fixed"> 
+        <parent link='wheelsupportleft'/>
+        <child link="wheelhand4"/>
+        <origin xyz="0.375 0 -0.075" rpy="0 0 0"/>
+    </joint>
+    <joint name="base_wheelhand5_joint" type="fixed"> 
+        <parent link='wheelsupportleft'/>
+        <child link="wheelhand5"/>
+        <origin xyz="-0.375 0 -0.075" rpy="0 0 0"/>
+    </joint>
+    <joint name="base_wheelhand6_joint" type="fixed"> 
+        <parent link='wheelsupportright'/>
+        <child link="wheelhand6"/>
+        <origin xyz="-0.375 0 -0.075" rpy="0 0 0"/>
+    </joint>
+    <joint name="wheel1_wheelhand" type="continuous"> 
+        <parent link='wheelhand1'/>
+        <child link="wheel1"/>
+        <origin xyz="0.03 0.05 -0.08" rpy="0 0 0"/>
+        <axis xyz="0 1 0"/>
+    </joint>
+    <joint name="wheel2_wheelhand" type="continuous"> 
+        <parent link='wheelhand2'/>
+        <child link="wheel2"/>
+        <origin xyz="-0.05 0.05 -0.08" rpy="0 0 0"/>
+        <axis xyz="0 1 0"/>
+    </joint>
+    <joint name="wheel3_wheelhand" type="continuous"> 
+        <parent link='wheelhand3'/>
+        <child link="wheel3"/>
+        <origin xyz="-0.05 -0.05 -0.08" rpy="0 0 0"/>
+        <axis xyz="0 1 0"/>
+    </joint>
+    <joint name="wheel4_wheelhand" type="continuous"> 
+        <parent link='wheelhand4'/>
+        <child link="wheel4"/>
+        <origin xyz="0.03 -0.05 -0.08" rpy="0 0 0"/>
+        <axis xyz="0 1 0"/>
+    </joint>
+    <joint name="wheel5_wheelhand" type="continuous"> 
+        <parent link='wheelhand5'/>
+        <child link="wheel5"/>
+        <origin xyz="-0.03 -0.05 -0.08" rpy="0 0 0"/>
+        <axis xyz="0 1 0"/>
+    </joint>
+    <joint name="wheel6_wheelhand" type="continuous"> 
+        <parent link='wheelhand6'/>
+        <child link="wheel6"/>
+        <origin xyz="-0.03 -0.05 -0.08" rpy="0 0 0"/>
+        <axis xyz="0 1 0"/>
+    </joint>
+    <joint name='base_joint' type='fixed'>
+        <parent link="base_footprint"/>
+        <child link="base_link"/>
+        <origin xyz="0.0 0.0 0.15" rpy="0.0 0.0 0.0"/>
+        
+    </joint>
+    
+
+</robot>
