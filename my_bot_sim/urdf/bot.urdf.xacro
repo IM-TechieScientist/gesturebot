@@ -1,5 +1,7 @@
 <?xml version="1.0"?>
-<robot name="bot">
+<robot name="robot" xmlns:xacro="http://www.ros.org/wiki/xacro">
+  <xacro:arg name="robot_name" default="bot1"/>
+  
   <!-- Materials -->
   <material name="grey">
     <color rgba="0.7 0.7 0.7 1"/>
@@ -12,9 +14,9 @@
   </material>
 
   <!-- Base -->
-  <link name="base_footprint"/>
+  <link name="$(arg robot_name)_base_footprint"/>
 
-  <link name="base_link">
+  <link name="$(arg robot_name)_base_link">
     <visual>
       <geometry>
         <box size="0.6 0.4 0.2"/>
@@ -35,7 +37,7 @@
   </link>
 
   <!-- Wheels -->
-  <link name="leftwheel">
+  <link name="$(arg robot_name)_leftwheel">
     <visual>
       <geometry>
         <cylinder radius="0.1" length="0.05"/>
@@ -48,12 +50,6 @@
         <cylinder radius="0.1" length="0.05"/>
       </geometry>
       <origin xyz="0 0 0" rpy="1.5708 0 0"/>
-      <gazebo>
-        <mu1>1.0</mu1>
-        <mu2>1.0</mu2>
-        <kp>100000.0</kp>
-        <kd>1.0</kd>
-      </gazebo>
     </collision>
     <inertial>
       <mass value="0.5"/>
@@ -61,7 +57,7 @@
     </inertial>
   </link>
 
-  <link name="rightwheel">
+  <link name="$(arg robot_name)_rightwheel">
     <visual>
       <geometry>
         <cylinder radius="0.1" length="0.05"/>
@@ -74,12 +70,6 @@
             <cylinder radius="0.1" length="0.05"/>
         </geometry>
         <origin xyz="0 0 0" rpy="1.5708 0 0"/>
-        <gazebo>
-            <mu1>1.0</mu1>
-            <mu2>1.0</mu2>
-            <kp>100000.0</kp>
-            <kd>1.0</kd>
-        </gazebo>
     </collision>
     <inertial>
       <mass value="0.5"/>
@@ -87,7 +77,7 @@
     </inertial>
   </link>
 
-  <link name="casterwheel">
+  <link name="$(arg robot_name)_casterwheel">
     <visual>
       <geometry>
         <sphere radius="0.05"/>
@@ -107,36 +97,34 @@
   </link>
 
   <!-- Joints -->
-  <joint name="base_joint" type="fixed">
-    <parent link="base_footprint"/>
-    <child link="base_link"/>
+  <joint name="$(arg robot_name)_base_joint" type="fixed">
+    <parent link="$(arg robot_name)_base_footprint"/>
+    <child link="$(arg robot_name)_base_link"/>
     <origin xyz="0 0 0.1" rpy="0 0 0"/>
   </joint>
 
-  <joint name="leftwheel_joint" type="continuous">
-    <parent link="base_link"/>
-    <child link="leftwheel"/>
+  <joint name="$(arg robot_name)_leftwheel_joint" type="continuous">
+    <parent link="$(arg robot_name)_base_link"/>
+    <child link="$(arg robot_name)_leftwheel"/>
     <origin xyz="-0.15 0.225 0.0" rpy="0 0 0"/>
     <axis xyz="0 -1 0"/>
-    <dynamics damping="0.5" friction="1.0"/>
   </joint>
 
-  <joint name="rightwheel_joint" type="continuous">
-    <parent link="base_link"/>
-    <child link="rightwheel"/>
+  <joint name="$(arg robot_name)_rightwheel_joint" type="continuous">
+    <parent link="$(arg robot_name)_base_link"/>
+    <child link="$(arg robot_name)_rightwheel"/>
     <origin xyz="-0.15 -0.225 0.0" rpy="0 0 0"/>
     <axis xyz="0 -1 0"/>
-    <dynamics damping="0.5" friction="1.0"/>
   </joint>
 
-  <joint name="basecaster" type="fixed">
-    <parent link="base_link"/>
-    <child link="casterwheel"/>
+  <joint name="$(arg robot_name)_basecaster" type="fixed">
+    <parent link="$(arg robot_name)_base_link"/>
+    <child link="$(arg robot_name)_casterwheel"/>
     <origin xyz="0.2 0.0 -0.05" rpy="0 0 0"/>
   </joint>
 
   <!-- Lidar -->
-  <link name="lidar">
+  <link name="$(arg robot_name)_lidar">
     <visual>
       <geometry>
         <cylinder radius="0.1" length="0.05"/>
@@ -146,26 +134,30 @@
     </visual>
   </link>
 
-  <joint name="base_lidar_joint" type="fixed">
-    <parent link="base_link"/>
-    <child link="lidar"/>
+  <joint name="$(arg robot_name)_base_lidar_joint" type="fixed">
+    <parent link="$(arg robot_name)_base_link"/>
+    <child link="$(arg robot_name)_lidar"/>
     <origin xyz="0 0 0.225" rpy="0 0 0"/>
   </joint>
 
   <!-- Gazebo Diff Drive Plugin -->
   <gazebo>
     <plugin name="diff_drive_controller" filename="libgazebo_ros_diff_drive.so">
-      <ros>
-        <remapping>cmd_vel:=/cmd_vel</remapping>
-      </ros>
+
+      
       <update_rate>100.0</update_rate>
-      <left_joint>rightwheel_joint</left_joint>
-      <right_joint>leftwheel_joint</right_joint>
+      
+      <left_joint>$(arg robot_name)_rightwheel_joint</left_joint>
+      <right_joint>$(arg robot_name)_leftwheel_joint</right_joint>
+      
       <wheel_separation>0.45</wheel_separation>
       <wheel_diameter>0.2</wheel_diameter>
       <torque>15</torque>
       <command_topic>cmd_vel</command_topic>
+      <robot_base_frame>$(arg robot_name)_base_footprint</robot_base_frame>
+      
       <cmd_vel_timeout>0.25</cmd_vel_timeout>
+      <publish_wheel_tf>true</publish_wheel_tf>
     </plugin>
   </gazebo>
 

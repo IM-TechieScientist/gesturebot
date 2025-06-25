@@ -10,8 +10,8 @@ setup(
         ('share/ament_index/resource_index/packages',
             ['resource/' + package_name]),
         ('share/' + package_name, ['package.xml']),
-        ('share/' + package_name + '/launch', ['launch/launch_bot_gazebo.py']),
-        ('share/' + package_name + '/urdf', ['urdf/bot.urdf']),
+        ('share/' + package_name + '/launch', ['launch/multi_bot_launch.py']),
+        ('share/' + package_name + '/urdf', ['urdf/bot.urdf.xacro']),
 
     ],
     install_requires=['setuptools'],
